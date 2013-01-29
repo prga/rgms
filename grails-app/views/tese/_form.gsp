@@ -1,14 +1,6 @@
-<%@ page import="rgms.Tese" %>
+<%@ page import="rgms.publication.Tese" %>
 
 
-
-<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'author', 'error')} required">
-	<label for="author">
-		<g:message code="tese.author.label" default="Author" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="author" required="" value="${teseInstance?.author}"/>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'title', 'error')} required">
 	<label for="title">
@@ -16,6 +8,30 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="title" required="" value="${teseInstance?.title}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'publicationDate', 'error')} required">
+	<label for="publicationDate">
+		<g:message code="tese.publicationDate.label" default="Publication Date" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:datePicker name="publicationDate" precision="day"  value="${teseInstance?.publicationDate}"  />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'file', 'error')} ">
+	<label for="file">
+		<g:message code="tese.file.label" default="File" />
+		
+	</label>
+	<g:field type="file" name="file" id="file" required="" value="${fieldValue(bean: teseInstance, field: 'file')}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'researchLine', 'error')} ">
+	<label for="researchLine">
+		<g:message code="tese.researchLine.label" default="Research Line" />
+		
+	</label>
+	<g:select id="researchLine" name="researchLine.id" from="${rgms.publication.ResearchLine.list()}" optionKey="id" value="${teseInstance?.researchLine?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'school', 'error')} required">
@@ -26,26 +42,19 @@
 	<g:textField name="school" required="" value="${teseInstance?.school}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'year', 'error')} required">
-	<label for="year">
-		<g:message code="tese.year.label" default="Year" />
+<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'address', 'error')} required">
+	<label for="address">
+		<g:message code="tese.address.label" default="Address" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="number" name="year" required="" value="${fieldValue(bean: teseInstance, field: 'year')}"/>
+	<g:textField name="address" required="" value="${teseInstance?.address}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'month', 'error')} required">
-	<label for="month">
-		<g:message code="tese.month.label" default="Month" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'members', 'error')} ">
+	<label for="members">
+		<g:message code="tese.members.label" default="Members" />
+		
 	</label>
-	<g:field type="number" name="month" required="" value="${fieldValue(bean: teseInstance, field: 'month')}"/>
+	
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: teseInstance, field: 'arquivo', 'error')} required">
-	<label for="arquivo">
-		<g:message code="tese.arquivo.label" default="Arquivo" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field type="file" name="arquivo" id="arquivo" required="" value="${fieldValue(bean: teseInstance, field: 'arquivo')}"/>
-</div>

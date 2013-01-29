@@ -1,5 +1,11 @@
 import org.apache.shiro.crypto.hash.Sha256Hash
-import rgms.*
+
+import rgms.authentication.Role
+import rgms.member.Member
+import rgms.member.MemberController
+import rgms.member.MemberControllerMixin
+import rgms.member.Record
+import rgms.publication.ResearchLine
 
 class BootStrap {
 
@@ -38,10 +44,11 @@ class BootStrap {
             
             print("Instancia de Admin = "+Member.findByUsername('admin').toString())
         }
-#if($default_values)             
-        MemberController.mixin MemberControllerMixin                
-#end
 
+		ResearchLine rl = new ResearchLine()
+		rl.setName("Empirical Software Engineering")
+		rl.setDescription("We are investigating processes, methods, techniques and tools for supporting empirical studies in software engineering. The main objective is to develop a infrastructure that support researchers to define, plan, execute, analyze and store results of empirical studies in general. At this moment we call such structure Testbed")
+		rl.save()
     }
 
     def destroy = {
